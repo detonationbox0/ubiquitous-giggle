@@ -492,7 +492,8 @@ $("#add").on("click", function() {
 
     
     // Create Image Node to be added to the layer
-    Konva.Image.fromURL('logo-mail-shark.svg', function (imgNode) {
+    Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) {
+        // Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) {
     // Konva.Image.fromURL('https://images.getbento.com/accounts/63e50d3a0270f2fe2c25af59b44fc235/media/images/logo-hero-white.png', function (imgNode) {
         imgNode.setAttrs({
             x: 0,
