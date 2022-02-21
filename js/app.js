@@ -494,6 +494,8 @@ $("#add").on("click", function() {
     Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) { // <- This line is for GitHub's relative link
     // Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) { // <- This line is for debugging locally
     // Konva.Image.fromURL('https://images.getbento.com/accounts/63e50d3a0270f2fe2c25af59b44fc235/media/images/logo-hero-white.png', function (imgNode) {
+       // ↑ This line uses a raster logo
+
         imgNode.setAttrs({
             x: 0,
             y: 0,
