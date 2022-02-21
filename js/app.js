@@ -81,7 +81,6 @@ $(function() {
      * Snapping shapes
      * -----------------------------------------------------------------------------------
      * Adapted from https://konvajs.org/docs/sandbox/Objects_Snapping.html
-     * The comments don't help much, do they?
      * 
      * This aligns the node to other nodes, but doesn't snap
      * I can't work out how to get one node to "snap" to another
@@ -466,7 +465,7 @@ $(function() {
 
 
     //#endregion
-})
+});
 
 
 /**
@@ -492,8 +491,8 @@ $("#add").on("click", function() {
 
     
     // Create Image Node to be added to the layer
-    Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) {
-        // Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) {
+    // Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) {
+    Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) {
     // Konva.Image.fromURL('https://images.getbento.com/accounts/63e50d3a0270f2fe2c25af59b44fc235/media/images/logo-hero-white.png', function (imgNode) {
         imgNode.setAttrs({
             x: 0,
@@ -544,10 +543,12 @@ $("#add").on("click", function() {
  * */
 
 $("#download").on("click", function() {
-    hideGuides(); // The guides and transformer will be visible in the output
-    var dataURL = stage.toDataURL({ pixelRatio: 15 });
-    downloadURI(dataURL, 'stage.png')
-    showGuides();
+    //#region
+        hideGuides(); // The guides and transformer will be visible in the output
+        var dataURL = stage.toDataURL({ pixelRatio: 15 });
+        downloadURI(dataURL, 'stage.png')
+        showGuides();
+    //#endregion
 })
 
 /**
@@ -557,7 +558,7 @@ $("#download").on("click", function() {
  * */
 
 $("#add-text").on("click", function() {
-    
+    //#region
     $("#fonts").show();
 
     var textNode = new Konva.Text({
@@ -613,7 +614,7 @@ $("#add-text").on("click", function() {
           }
         });
       });
-
+    //#endregion
 });
 
 /**
@@ -636,9 +637,17 @@ $('#choose-font').on('change', function() {
 
 });
   
+/**
+ * -----------------------------------------------------------------------------------
+ * User clicks Save
+ * -----------------------------------------------------------------------------------
+ * Removed from DOM
+ * */
 $("#save").on("click", function() {
+    //#region
     var stageJson = layer.toJson();
     console.log(stageJson);
+    //#endregion
 });
 
 
@@ -678,7 +687,13 @@ function hideGuides() {
     //#endregion
 }
 
+/**
+ * -----------------------------------------------------------------------------------
+ * Downloads the PNG
+ * -----------------------------------------------------------------------------------
+ * */
 function downloadURI(uri, name) {
+    //#region
     var link = document.createElement('a');
     link.download = name;
     link.href = uri;
@@ -686,5 +701,6 @@ function downloadURI(uri, name) {
     link.click();
     document.body.removeChild(link);
     link.remove();
+    //#endregion
   }
   
