@@ -463,6 +463,10 @@ $(function() {
     //#endregion
 
 
+    // Click the Add Logo button, then move the logo to the top left shoulder
+    $("#add").click();
+    console.log(stage.find("#selectable"));
+
 
     //#endregion
 });
@@ -491,8 +495,8 @@ $("#add").on("click", function() {
 
     
     // Create Image Node to be added to the layer
-    Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) { // <- This line is for GitHub's relative link
-    // Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) { // <- This line is for debugging locally
+    // Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) { // <- This line is for GitHub's relative link
+    Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) { // <- This line is for debugging locally
     // Konva.Image.fromURL('https://images.getbento.com/accounts/63e50d3a0270f2fe2c25af59b44fc235/media/images/logo-hero-white.png', function (imgNode) {
        // ↑ This line uses a raster logo
 
@@ -502,7 +506,8 @@ $("#add").on("click", function() {
             scaleX: 0.2,
             scaleY: 0.2,
             draggable: true,
-            name:"selectable"
+            name:"selectable",
+            id:"logo"
         });
 
         // Add the Image Node to the Layer
