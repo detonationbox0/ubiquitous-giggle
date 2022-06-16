@@ -487,14 +487,87 @@ $(function() {
  * -----------------------------------------------------------------------------------
  * */  
 $("#add").on("click", function() {
-    //#region
 
-    
+    //#region
+    var canvas = document.createElement('canvas');
+
+    // "But it's blurry!""
+    // lavrton's response:
+    // Yes. In that case you can make a bigger canvas upfront, or update it on resize end
+
+    canvg(canvas, '/Marcos.svg', {
+      renderCallback: function () {
+
+        var image = new Konva.Image({
+            image: canvas,
+        //   x: 200,
+            // width: 150,
+        //   height: 150,
+            scaleX: 0.2,
+            scaleY: 0.2,
+            draggable: true,
+            name:"selectable"
+        });
+
+
+        layer.add(image);
+        image.moveToTop();
+        tr.nodes([image]);
+        layer.draw();
+
+        image.on('mouseover', function() {
+            document.body.style.cursor = 'pointer';           
+        });
+
+        image.on('mouseout', function() {
+            document.body.style.cursor = 'default';
+        });
+
+        // When the user has finished transforming the SVG...
+        image.on('transformend', function() {
+
+            console.log("Transformed. How can we resize the image's canvas so that it's not blurry?")
+
+
+        });
+
+        // ... more events available https://konvajs.org/docs/events/Binding_Events.html
+
+      }
+    });
+
+
+    /* 
+
     // Create Image Node to be added to the layer
-    Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) { // <- This line is for GitHub's relative link
+    // Konva.Image.fromURL('/ubiquitous-giggle/logo-mail-shark.svg', function (imgNode) { // <- This line is for GitHub's relative link
+    Konva.Image.fromURL('/Marcos.svg', function (imgNode) { // <- This line is for debugging locally
     // Konva.Image.fromURL('/logo-mail-shark.svg', function (imgNode) { // <- This line is for debugging locally
     // Konva.Image.fromURL('https://images.getbento.com/accounts/63e50d3a0270f2fe2c25af59b44fc235/media/images/logo-hero-white.png', function (imgNode) {
        // ↑ This line uses a raster logo
+    
+        // $("body").attr("new-attr", "new-val")
+        // $(imgNode).attr("width", stage.width() +"px")
+    //    $(imgNode)
+       //.setAttribute("width", stage.width+"px");
+        // console.log(imgNode.getImage());
+    // $(imgNode).attr({
+    //     height: "100%",
+    //     width: "100%"
+    // })
+        // var canvas = document.createElement('canvas');
+
+
+        // * Longstanding Firefox bug disallows SVG without height and width attributes
+        // * Workaround mentioned here https://stackoverflow.com/questions/28690643/firefox-error-rendering-an-svg-image-to-html5-canvas-with-drawimage
+        // * Parse the image as an XML, add width and height manually
+
+        console.log(imgNode.getImage())
+        // var parser = new DOMParser();
+        // var result = parser.parseFromString(imgNode.getImage(), 'text/xml');
+        
+
+        // console.log(result);
 
         imgNode.setAttrs({
             x: 0,
@@ -526,11 +599,11 @@ $("#add").on("click", function() {
         imgNode.on('mouseout', function() {
             document.body.style.cursor = 'default';
         });
-   
 
         // ... more events available https://konvajs.org/docs/events/Binding_Events.html
 
-    });
+    });        */
+
     //#endregion
 });
 

@@ -41,7 +41,9 @@ select {
     display:none;
 }
 
-  
+svg {
+    width:100%;
+}
   
   
   
